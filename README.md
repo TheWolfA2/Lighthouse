@@ -1,5 +1,6 @@
 # Established Coding Conventions
-* Public properties/variables in C# classes are written using PascalCase `public string Name {get; set;}`
+* Public properties/variables in C# classes are written using PascalCase `public string FirstName {get; set;}`
+* Private variables in C# classes are written using camelCase and have an underscore to start `private int _currScore;`
 * Opening curly braces are placed on their own lines
 ```
 if (condition)
