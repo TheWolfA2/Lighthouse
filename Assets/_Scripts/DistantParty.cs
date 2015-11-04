@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class DistantParty : Party {
+public class DistantParty : Party
+{
 
     public DistantParty() : base()
     {

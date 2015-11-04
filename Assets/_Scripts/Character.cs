@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Character : MonoBehaviour {
+/// <summary>
+/// Functions as a base class for characters to maintain character data
+/// </summary>
+public class Character : MonoBehaviour
+{
 
-    public string Name { get; private set;}
+    public string Name { get; private set; }
     public Stats Attributes { get; private set; }
 
     public Character()

@@ -4,7 +4,8 @@ using System.Collections;
 /// <summary>
 /// Encapsulates the various stats and attributes of a character
 /// </summary>
-public class Stats : MonoBehaviour {
+public class Stats : MonoBehaviour
+{
 
     public int CurrentHealth { get; private set; }
     public int MaxHealth { get; private set; }

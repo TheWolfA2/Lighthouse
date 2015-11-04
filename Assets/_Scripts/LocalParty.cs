@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class LocalParty : Party {
+public class LocalParty : Party
+{
 
     public LocalParty() : base()
     {

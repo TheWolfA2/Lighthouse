@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerCharacter : Character {
+/// <summary>
+/// Represents a playable character
+/// </summary>
+public class PlayerCharacter : Character
+{
 
     public PlayerCharacter()
     {
