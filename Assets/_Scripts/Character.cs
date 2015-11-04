@@ -6,6 +6,6 @@ using System.Collections;
 /// </summary>
 public class Character : MonoBehaviour
 {
-    public string CharacterName;
-    public Stats Attributes;
+    public string characterName;
+    public Stats attributes;
 }

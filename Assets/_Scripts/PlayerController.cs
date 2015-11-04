@@ -3,10 +3,13 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    public float XAxisSpeed = 5;
-    public float ZAxisSpeed = 5;
+    public float xAxisSpeed = 5;
+    public float zAxisSpeed = 5;
 
-    public PlayerCharacter PlayerData;
+    public bool isLeader;
+    public bool doPartySwap = false;
+    public GameManager gameManager;
+    public PlayerCharacter playerData;
 
     // Use this for initialization
     void Start()
@@ -17,11 +20,31 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isLeader || !playerData.playerParty.isActive)
+        {
+            return;
+        }
         if (IsMovementPressed())
         {
             int directionX = GetDirection(Input.GetAxisRaw("Horizontal")),
                 directionZ = GetDirection(Input.GetAxisRaw("Vertical"));
-            Move(XAxisSpeed * Time.deltaTime * directionX, ZAxisSpeed * Time.deltaTime * directionZ);
+            Move(xAxisSpeed * Time.deltaTime * directionX, zAxisSpeed * Time.deltaTime * directionZ);
+        }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            doPartySwap = true;
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (doPartySwap && isLeader && playerData.playerParty.isActive)
+        {
+            if (gameManager != null)
+            {
+                gameManager.SwapParties();
+            }
+            doPartySwap = false;
         }
     }
 

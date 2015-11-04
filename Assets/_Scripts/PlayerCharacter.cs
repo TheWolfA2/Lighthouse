@@ -6,4 +6,5 @@ using System.Collections;
 /// </summary>
 public class PlayerCharacter : Character
 {
+    public Party playerParty;
 }
