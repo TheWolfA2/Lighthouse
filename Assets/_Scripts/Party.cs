@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Functions as a base class container for Characters
 /// </summary>
-public class Party : MonoBehaviour, ICollection<Character>
+public class Party : ICollection<Character>
 {
     public Character Leader { get; private set; }
     private List<Character> _partyMembers = new List<Character>();

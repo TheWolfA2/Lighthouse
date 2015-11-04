@@ -7,13 +7,19 @@ using System.Collections;
 public class Stats : MonoBehaviour
 {
 
-    public int CurrentHealth { get; private set; }
-    public int MaxHealth { get; private set; }
-    public int Attack { get; private set; }
-    public int Defense { get; private set; }
+    public int CurrentHealth;
+    public int MaxHealth;
+    public int Attack;
+    public int Defense;
 
     public Stats()
     {
         CurrentHealth = MaxHealth = Attack = Defense = 0;
+    }
+
+    public override string ToString()
+    {
+        return string.Format("Current Health: {0}, Max Health: {1}, Attack: {2}, Defense: {3}",
+            CurrentHealth, MaxHealth, Attack, Defense);
     }
 }
