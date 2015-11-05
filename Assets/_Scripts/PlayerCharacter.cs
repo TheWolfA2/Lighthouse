@@ -6,12 +6,5 @@ using System.Collections;
 /// </summary>
 public class PlayerCharacter : Character
 {
-
-    public PlayerCharacter()
-    {
-    }
-
-    public PlayerCharacter(string inName) : base(inName)
-    {
-    }
+    public Party playerParty;
 }

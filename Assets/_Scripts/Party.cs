@@ -8,19 +8,9 @@ using UnityEngine;
 /// </summary>
 public class Party : MonoBehaviour, ICollection<Character>
 {
-    public Character Leader { get; private set; }
+    public bool isActive = false;
+    public Character leader;
     private List<Character> _partyMembers = new List<Character>();
-
-    public Party()
-    {
-        Leader = null;
-    }
-
-    public Party(Character inLeader, List<Character> characters)
-    {
-        Leader = inLeader;
-        _partyMembers = characters;
-    }
 
     public Character this[int index]
     {
