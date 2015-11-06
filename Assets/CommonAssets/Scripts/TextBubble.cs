@@ -13,22 +13,24 @@ public class TextBubble : MonoBehaviour
     public float secondsBetweenWords;
     public float maxSecondsBetweenWords;
 
-    private List<string> _currText;
+    private List<string> _currDialogue;
     private int _currWord;
+    private int _currWordIndex;
     private bool showNextButton;
     public bool finishedText;
 
     void Start ()
     {
         _currWord = 0;
+        _currWordIndex = 0;
         numberOfLines = 3;
         speechBubbleHeight = (int)LayoutUtility.GetPreferredHeight(
             gameObject.GetComponent<RectTransform>()) * numberOfLines;
 
-        string testText = "HELLO WORLD MY NAME IS ALEX I AM A COOL GUY WHO DOESN'T AFRAID OF ANYTHING AND GOSH BOY GEE I SURE WONDER WHAT HAPPENS IF THIS GETS TOO LONG";
-        setText(testText);
+        string testText = "HELLO WORLD MY <b>NAME</b> IS ALEX I AM A COOL GUY WHO DOESN'T AFRAID OF ANYTHING AND GOSH BOY GEE I SURE WONDER WHAT HAPPENS IF THIS GETS TOO LONG";
+        SetText(testText);
 
-        maxSecondsBetweenWords = 0.2f;
+        maxSecondsBetweenWords = 0.1f;
         secondsBetweenWords = 0;
         showNextButton = false;
     }
@@ -36,7 +38,6 @@ public class TextBubble : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-
         if (showNextButton && Input.GetKey("up"))
         {
             Text t = this.gameObject.GetComponent<Text>();
@@ -44,8 +45,7 @@ public class TextBubble : MonoBehaviour
             showNextButton = false;
         }
 
-
-        if(_currWord == _currText.Count)
+        if(_currWord == _currDialogue.Count)
         {
             finishedText = true;
             return;
@@ -55,27 +55,42 @@ public class TextBubble : MonoBehaviour
         {
             return;
         }
-        if(secondsBetweenWords < maxSecondsBetweenWords){
-            secondsBetweenWords += Time.deltaTime; ;
 
+        if(secondsBetweenWords < maxSecondsBetweenWords)
+        {
+            secondsBetweenWords += Time.deltaTime;
             return;
         }
-
         secondsBetweenWords = 0f;
-        addWord(_currWord);
 
+        // Checks if it can add the current word in the dialogue array,
+        // but only check the letters it hasn't already added
+        if(CanAddWord(_currDialogue[_currWord].Substring(_currWordIndex)))
+        {
+            Text t = this.gameObject.GetComponent<Text>();
+            t.text += _currDialogue[_currWord][_currWordIndex];
+            _currWordIndex++;
+
+            if(_currWordIndex == _currDialogue[_currWord].Length)
+            {
+                t.text += " ";
+                _currWordIndex = 0;
+                _currWord++;
+            }
+        }
     }
 
-    public void setText(string newText)
+    public void SetText(string newText)
     {
-        _currText = new List<string>(newText.Split(' '));
+        _currDialogue = new List<string>(newText.Split(' '));
     }
 
-    private void addWord(int index)
+    private bool CanAddWord(string word)
     {
         Text t = this.gameObject.GetComponent<Text>();
         string prevText = t.text;
-        t.text += " " + _currText[index];
+
+        t.text += word;
 
         // Check if by adding the new word it overflows the container
         RectTransform r = this.gameObject.GetComponent<RectTransform>();
@@ -85,8 +100,12 @@ public class TextBubble : MonoBehaviour
             //remove that text, wait for the text to be advanced
             t.text = prevText;
             showNextButton = true;
-            return;
+            return false;
         }
-        _currWord++;
+        else
+        {
+            t.text = prevText;
+            return true;
+        }
     }
 }
