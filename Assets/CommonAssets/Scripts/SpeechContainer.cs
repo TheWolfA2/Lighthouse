@@ -3,7 +3,8 @@ using System.Collections;
 
 
 
-public class SpeechContainer  {
+public class SpeechContainer
+{
     public string speaker;
     public string dialog;
 
