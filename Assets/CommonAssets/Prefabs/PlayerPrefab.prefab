@@ -71,7 +71,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0578a0edcc75ac34f9cb2b978b359c9b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -115,8 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86409b8ccaf221540b6e34bdaa34f077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterName: 
-  Attributes: {fileID: 11480938}
+  characterName: 
+  attributes: {fileID: 0}
+  playerParty: {fileID: 0}
 --- !u!114 &11459166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,7 +129,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089248cb9b995e74792bf355883b50f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerData: {fileID: 11425820}
+  xAxisSpeed: 5
+  zAxisSpeed: 5
+  isLeader: 0
+  doPartySwap: 0
+  gameManager: {fileID: 0}
+  playerData: {fileID: 0}
 --- !u!114 &11480938
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -140,10 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161dcff8ab52b734bafc8e6e04755e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentHealth: 0
-  MaxHealth: 0
-  Attack: 0
-  Defense: 0
+  currentHealth: 0
+  maxHealth: 0
+  attack: 0
+  defense: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
