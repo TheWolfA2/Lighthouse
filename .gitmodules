@@ -1,0 +1,3 @@
+[submodule "InControl"]
+	path = Assets/InControl
+	url = git@github.com:pbhogan/InControl.git
